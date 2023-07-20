@@ -33,7 +33,7 @@ Route::middleware(['auth'])->group(function(){
         Route::resource('/users', UserController::class);
           Route::resource('/roles', RoleController::class);
           Route::resource('/lists', ListController::class);
-          Route::resource('/navigations', NavigationController::class)->except(['show']);
+          Route::resource('/navigations', NavigationController::class);
       
     });
 

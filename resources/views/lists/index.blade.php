@@ -15,13 +15,13 @@
               <br>
               @foreach($navigations as $navigation)
               <li class="nav-item">
-                @if($navigation->lists)
+                @if($navigation->lists_id)
                 @php
-                $list = $lists->firstWhere('id', $navigation->lists);
+                $list = $lists->firstWhere('id', $navigation->lists_id);
                 @endphp
-                @if($navigation)
+                @if($list)
                 <a href="{{ route('lists.show', $list->id) }}" class="text-decoration-none ">
-                  <h5><strong>{{ $navigation->name }}</strong></h5>
+                  <h5><strong> {{$navigation->name }}</strong></h5>
                 </a>
                 @endif
                 @endif

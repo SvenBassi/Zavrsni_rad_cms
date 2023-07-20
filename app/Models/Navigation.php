@@ -20,6 +20,6 @@ class Navigation extends Model
     ];
 
     public function page(){
-        $this->hasMany(Lists::class);
+        $this->belongsTo(Lists::class);
     }
 }

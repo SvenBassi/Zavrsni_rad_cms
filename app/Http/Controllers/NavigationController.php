@@ -36,13 +36,16 @@ class NavigationController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
-            'lists' => 'nullable'
+            'lists_id' => 'nullable',
+            'lists' => 'required'
         ]);
 
         
         $navigation = new Navigation();
         $navigation->name = $request->input('name');
-        $navigation->lists = $request->input('lists');
+        $navigation->lists= $request->input('lists');
+        $navigation->lists_id= $request->input('lists');
+        
 
         $navigation->save();
         
@@ -56,7 +59,6 @@ class NavigationController extends Controller
     {
         $navigations = Navigation::findOrFail($id);
         $lists = Lists::all();
-
         return view('navigations.show', compact('navigations', 'lists'));
     }
 
@@ -67,7 +69,6 @@ class NavigationController extends Controller
     {
         $navigation = Navigation::findOrFail($id);
         $lists = Lists::all();
-
         return view('navigations.edit', compact('navigation', 'lists'));
     }
 
@@ -81,12 +82,12 @@ class NavigationController extends Controller
         // Validate input data
         $validated = $request->validate([
             'name' => 'required',
-            'lists' => 'nullable'
+            'lists_id' => 'nullable',
         ]);
         
         // Update navigation
         $navigation->name = $request->input('name');
-        $navigation->lists = $request->input('lists');
+        $navigation->lists_id = $request->input('lists');
         
         $navigation->save();
         
@@ -98,8 +99,6 @@ class NavigationController extends Controller
      */
     public function destroy(string $id)
     {
-       
-
         $navigations= Navigation::findOrFail($id);
         $navigations->delete();
         return redirect()->route('lists.index');;

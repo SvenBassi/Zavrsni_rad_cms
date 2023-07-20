@@ -11,6 +11,7 @@
       <table class="table">
         <thead>
           <tr>
+            <th>List Id</th>
             <th>Name</th>
             <th>List Title</th>
             <th>Actions</th>
@@ -19,8 +20,10 @@
         <tbody>
         @foreach($navigations as $navigation)
           <tr>
-            <td>{{ $navigation->name ?? '' }}</td>
-            <td>{{ app('App\Http\Controllers\ListController')->getList($navigation->lists ?? '') }}</td>
+            <td>{{ $navigation->lists_id}}</td>
+            <td>{{ $navigation->name}}</td>
+            <td>{{ app('App\Http\Controllers\ListController')->getList($navigation->lists) }}</td>
+            
             <td>
               <form action="{{ route('navigations.destroy', $navigation->id) }}" method="POST" style="display: inline-block;">
                 @csrf 
