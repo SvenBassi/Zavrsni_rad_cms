@@ -18,10 +18,10 @@ class UserMiddleware
     {
     
 
-            //admin role == 1
-            //user role == 0
+        
         if (Auth::check() && Auth::user()->role >= 2) {
-            return $next($request); 
+           return $next($request); 
+        
         }
 
 
